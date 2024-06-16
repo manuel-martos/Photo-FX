@@ -4,7 +4,7 @@
     <string name="run">Run</string>
     <string name="stop">Stop</string>
     <string name="theme">Theme</string>
-    <string name="effect_selector_disclaimer">Please, select a effect to apply:</string>
+    <string name="effect_selector_disclaimer">Please, select an effect to apply:</string>
     <string name="photo_selector_disclaimer">Please, select a picture from this list:</string>
     <string name="photo_selection_title">Select a photo</string>
     <string name="effect_selection_title">Select an effect</string>
