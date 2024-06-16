@@ -1,10 +1,10 @@
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.CanvasBasedWindow
-import com.mmartosdev.photofx.App
+import com.mmartosdev.photofx.PhotoFxApplication
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
     CanvasBasedWindow("Photo FX") {
-        App(onCloseClicked = null)
+        PhotoFxApplication(onCloseClicked = null)
     }
 }
