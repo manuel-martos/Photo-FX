@@ -1,7 +1,6 @@
 package com.mmartosdev.photofx.modifiers
 
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ImageBitmap
 
 expect fun Modifier.shader(
     shader: String,

@@ -1,4 +1,4 @@
-package com.mmartosdev.photofx.ui
+package com.mmartosdev.photofx.ui.photoselection
 
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.lifecycle.ViewModel

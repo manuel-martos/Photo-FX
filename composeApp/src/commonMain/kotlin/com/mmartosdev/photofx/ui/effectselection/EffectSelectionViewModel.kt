@@ -1,6 +1,7 @@
-package com.mmartosdev.photofx.ui
+package com.mmartosdev.photofx.ui.effectselection
 
 import androidx.lifecycle.ViewModel
+import com.mmartosdev.photofx.ui.EffectConfig
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

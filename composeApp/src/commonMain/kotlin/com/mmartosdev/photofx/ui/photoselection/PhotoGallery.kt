@@ -1,4 +1,4 @@
-package com.mmartosdev.photofx.ui
+package com.mmartosdev.photofx.ui.photoselection
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.mmartosdev.photofx.components.SelectionIndicator
 import kotlinx.collections.immutable.ImmutableList
 import org.jetbrains.compose.resources.stringResource
 import photo_fx.composeapp.generated.resources.Res

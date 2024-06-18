@@ -1,4 +1,4 @@
-package com.mmartosdev.photofx.ui
+package com.mmartosdev.photofx.ui.photofx
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
@@ -11,22 +11,27 @@ import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.mmartosdev.photofx.ui.EffectConfig
+import com.mmartosdev.photofx.ui.MainUiState
+import com.mmartosdev.photofx.ui.effectselection.EffectSelection
+import com.mmartosdev.photofx.ui.photoselection.PhotoSelectionScreen
+import com.mmartosdev.photofx.ui.playground.PlaygroundScreen
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable
-fun MainScreen(
+fun PhotoFx(
     images: ImmutableList<ImageBitmap>,
     effects: ImmutableList<EffectConfig>,
     onCloseClicked: (() -> Unit)?,
     modifier: Modifier = Modifier,
-    viewModel: MainScreenViewModel = viewModel { MainScreenViewModel() },
+    viewModel: PhotoFxViewModel = viewModel { PhotoFxViewModel() },
 ) {
     val uiState by viewModel.uiState.collectAsState()
     Box(modifier = modifier) {
         when (val state = uiState) {
             is MainUiState.PhotoSelection ->
                 ScopedViewModelStore {
-                    PhotoSelection(
+                    PhotoSelectionScreen(
                         images = images,
                         onCloseClicked = onCloseClicked,
                         onImageSelected = viewModel::onImageSelected,
@@ -45,7 +50,7 @@ fun MainScreen(
 
             is MainUiState.Playground ->
                 ScopedViewModelStore {
-                    Playground(
+                    PlaygroundScreen(
                         selectedImage = state.imageBitmap,
                         selectedEffect = state.effect,
                         onCloseClicked = onCloseClicked,

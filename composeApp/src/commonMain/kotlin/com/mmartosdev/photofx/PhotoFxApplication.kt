@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.mmartosdev.photofx.theme.AppTheme
 import com.mmartosdev.photofx.ui.EffectConfig
-import com.mmartosdev.photofx.ui.MainScreen
+import com.mmartosdev.photofx.ui.photofx.PhotoFx
 import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.imageResource
 import photo_fx.composeapp.generated.resources.Res
@@ -20,7 +20,7 @@ import photo_fx.composeapp.generated.resources.img_05
 import photo_fx.composeapp.generated.resources.img_06
 
 @Composable
-internal fun App(
+internal fun PhotoFxApplication(
     onCloseClicked: (() -> Unit)?,
 ) = AppTheme {
     val images = persistentListOf(
@@ -36,7 +36,7 @@ internal fun App(
         EffectConfig.SmoothPixelation(),
         EffectConfig.ChromaticAberration(),
     )
-    MainScreen(
+    PhotoFx(
         images = images,
         effects = effects,
         onCloseClicked = onCloseClicked,

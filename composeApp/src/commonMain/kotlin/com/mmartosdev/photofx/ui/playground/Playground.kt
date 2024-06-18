@@ -1,32 +1,51 @@
-package com.mmartosdev.photofx.ui
+package com.mmartosdev.photofx.ui.playground
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.DragInteraction
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.BiasAbsoluteAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.mmartosdev.photofx.components.GenericLayout
+import com.mmartosdev.photofx.ui.EffectConfig
+import com.mmartosdev.photofx.ui.effectselection.applyEffect
 import org.jetbrains.compose.resources.stringResource
 import photo_fx.composeapp.generated.resources.Res
 import photo_fx.composeapp.generated.resources.effect_controls_chromatic_aberration_intensity
 import photo_fx.composeapp.generated.resources.effect_controls_smooth_pixelation_pixel_size
+import photo_fx.composeapp.generated.resources.effect_controls_value
 import photo_fx.composeapp.generated.resources.effect_controls_vignette_decay_factor
 import photo_fx.composeapp.generated.resources.effect_controls_vignette_intensity
 import photo_fx.composeapp.generated.resources.effect_selection_image_with_effect
@@ -35,7 +54,7 @@ import photo_fx.composeapp.generated.resources.generic_reset
 import photo_fx.composeapp.generated.resources.playground_title
 
 @Composable
-fun Playground(
+fun PlaygroundScreen(
     selectedImage: ImageBitmap,
     selectedEffect: EffectConfig,
     onCloseClicked: (() -> Unit)?,
@@ -187,13 +206,62 @@ private fun SlidingFactor(
     modifier: Modifier = Modifier,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
 ) {
-    Column(modifier = modifier.fillMaxWidth()) {
-        Text(name)
-        Slider(
-            value = value,
-            onValueChange = onValueChanged,
-            valueRange = valueRange,
-            modifier = Modifier.fillMaxWidth()
-        )
+    val interactionSource = remember { MutableInteractionSource() }
+    var tooltipShown by remember { mutableStateOf(false) }
+    Box(modifier = modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Text(name)
+            Slider(
+                value = value,
+                onValueChange = onValueChanged,
+                valueRange = valueRange,
+                interactionSource = interactionSource,
+                modifier = Modifier.fillMaxWidth()
+            )
+            LaunchedEffect(interactionSource) {
+                interactionSource.interactions.collect {
+                    (it as? DragInteraction)?.run {
+                        when (this) {
+                            is DragInteraction.Start -> {
+                                tooltipShown = true
+                            }
+
+                            is DragInteraction.Stop -> {
+                                tooltipShown = false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        AnimatedVisibility(
+            visible = tooltipShown,
+            enter = fadeIn(),
+            exit = fadeOut(),
+            modifier = Modifier
+                .align(
+                    BiasAbsoluteAlignment(
+                        horizontalBias = valueRange.mapToBias(value),
+                        verticalBias = -1f,
+                    )
+                )
+        ) {
+            val formattedValue =
+                stringResource(Res.string.effect_controls_value, (value * 100).toInt() / 100f)
+            Text(
+                text = formattedValue,
+                color = MaterialTheme.colorScheme.surface,
+                modifier = Modifier
+                    .wrapContentSize()
+                    .background(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        shape = RoundedCornerShape(32.dp),
+                    )
+                    .padding(horizontal = 8.dp, vertical = 4.dp)
+            )
+        }
     }
 }
+
+fun ClosedFloatingPointRange<Float>.mapToBias(value: Float) =
+    (2f * (value - start) / (endInclusive - start)) - 1f

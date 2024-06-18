@@ -1,8 +1,10 @@
-package com.mmartosdev.photofx.ui
+package com.mmartosdev.photofx.ui.photofx
 
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mmartosdev.photofx.ui.EffectConfig
+import com.mmartosdev.photofx.ui.MainUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -10,7 +12,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
-class MainScreenViewModel : ViewModel() {
+class PhotoFxViewModel : ViewModel() {
     private val _selectedPhoto = MutableStateFlow<ImageBitmap?>(null)
     private val _selectedEffect = MutableStateFlow<EffectConfig?>(null)
 
@@ -40,21 +42,4 @@ class MainScreenViewModel : ViewModel() {
         _selectedEffect.update { null }
     }
 
-}
-
-sealed interface MainUiState {
-    data object PhotoSelection : MainUiState
-
-    data class EffectSelection(val imageBitmap: ImageBitmap) : MainUiState
-
-    data class Playground(
-        val effect: EffectConfig,
-        val imageBitmap: ImageBitmap,
-    ) : MainUiState
-}
-
-sealed interface EffectConfig {
-    data class Vignette(val intensity: Float = 16f, val decayFactor: Float = 0.25f) : EffectConfig
-    data class SmoothPixelation(val pixelSize: Float = 2f) : EffectConfig
-    data class ChromaticAberration(val intensity: Float = 8f) : EffectConfig
 }

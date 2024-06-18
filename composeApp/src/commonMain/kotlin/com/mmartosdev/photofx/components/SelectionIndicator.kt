@@ -1,4 +1,4 @@
-package com.mmartosdev.photofx.ui
+package com.mmartosdev.photofx.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

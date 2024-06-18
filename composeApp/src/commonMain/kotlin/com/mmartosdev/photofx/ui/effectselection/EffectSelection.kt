@@ -1,4 +1,4 @@
-package com.mmartosdev.photofx.ui
+package com.mmartosdev.photofx.ui.effectselection
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Image
@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.mmartosdev.photofx.components.GenericLayout
+import com.mmartosdev.photofx.ui.EffectConfig
 import kotlinx.collections.immutable.ImmutableList
 import org.jetbrains.compose.resources.stringResource
 import photo_fx.composeapp.generated.resources.Res

@@ -17,12 +17,12 @@ class AndroidApp : Application() {
     }
 }
 
-class AppActivity : ComponentActivity() {
+class PhotoFxActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            App(onCloseClicked = { finish() })
+            PhotoFxApplication(onCloseClicked = { finish() })
         }
     }
 }
