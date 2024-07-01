@@ -28,27 +28,16 @@ Run iOS simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`
 Run the browser application: `./gradlew :composeApp:wasmJsBrowserDevelopmentRun --continue`
 Run browser UI tests: `./gradlew :composeApp:wasmJsBrowserTest`
 
-## Images
+# Image Details
 
-All images used in this project are licensed with Creative Commons license. More details on table below:
+All images used in this project are licensed under various Creative Commons licenses. Specific 
+details for each image are provided in the table below:
 
-
-<table>
-    <thead>
-        <tr>
-            <th>Image</th>
-            <th>Details</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><img alt="Pitched-roof pavilion sits on top of a London office building" src="/composeApp/src/commonMain/composeResources/drawable/img_01.png"/></td>
-            <td>
-                <div><a target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">License details</a></div>
-                <div>Creator: Rory Gardiner</div>
-                <div>Copyright: © RORY GARDINER 2014</div>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
+| **Image** | **Details** |
+| --- | --- |
+| ![Pitched-roof pavilion sits on top of a London office building](/composeApp/src/commonMain/composeResources/drawable/img_01.png) | **License details**: [CC BY-NC-ND 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0/)<br>**Creator**: Rory Gardiner<br>**Copyright**: © RORY GARDINER 2014 |
+| ![Alien's architecture](/composeApp/src/commonMain/composeResources/drawable/img_02.png) | **License details**: [CC BY-NC-ND 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0/)<br>**Creator**: ezio |
+| ![Leonardo Glass Cube - Corporate architecture](/composeApp/src/commonMain/composeResources/drawable/img_03.png) | **Source**: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Leonardo_Glass_Cube_-_Corporate_architecture.jpg)<br>**License details**: [CC BY-NC-ND 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0/) |
+| ![Fish-eye lens architectural photography of concrete building](/composeApp/src/commonMain/composeResources/drawable/img_04.png) | **License details**: [Public Domain](https://creativecommons.org/licenses/publicdomain/) |
+| ![Cove Hollow Farm Road Residence - Architecture Outfit](/composeApp/src/commonMain/composeResources/drawable/img_05.png) | **License details**: [CC BY-NC-ND 4.0](http://creativecommons.org/licenses/by-nc-nd/4.0/)<br>**Creator**: Eric Petschek<br>**Copyright**: ©2021, Eric Petschek |
+| ![Colorful historic European city at dawn](/composeApp/src/commonMain/composeResources/drawable/img_06.png) | **Source**: [PxHere](https://pxhere.com/en/photo/1592361)<br>**License details**: [Public Domain](https://creativecommons.org/licenses/publicdomain/)<br>**Creator**: Boris Stroujko<br>**Credit**: Shutterstock / Boris Stroujko |
