@@ -28,3 +28,27 @@ Run iOS simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`
 Run the browser application: `./gradlew :composeApp:wasmJsBrowserDevelopmentRun --continue`
 Run browser UI tests: `./gradlew :composeApp:wasmJsBrowserTest`
 
+## Images
+
+All images used in this project are licensed with Creative Commons license. More details on table below:
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img alt="Pitched-roof pavilion sits on top of a London office building" src="/composeApp/src/commonMain/composeResources/drawable/img_01.png"/></td>
+            <td>
+                <div><a target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">License details</a></div>
+                <div>Creator: Rory Gardiner</div>
+                <div>Copyright: © RORY GARDINER 2014</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
