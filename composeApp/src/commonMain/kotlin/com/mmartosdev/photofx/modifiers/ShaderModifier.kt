@@ -4,7 +4,13 @@ import androidx.compose.ui.Modifier
 
 expect fun Modifier.shader(
     shader: String,
-    uniformsBlock: ShaderUniformProvider.() -> Unit,
+    uniformsBlock: (ShaderUniformProvider.() -> Unit)? = null,
+): Modifier
+
+expect fun Modifier.runtimeShader(
+    shader: String,
+    uniformName: String = "content",
+    uniformsBlock: (ShaderUniformProvider.() -> Unit)? = null,
 ): Modifier
 
 interface ShaderUniformProvider {

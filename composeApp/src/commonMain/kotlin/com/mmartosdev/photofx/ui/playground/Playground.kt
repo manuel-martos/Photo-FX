@@ -45,13 +45,14 @@ import org.jetbrains.compose.resources.stringResource
 import photo_fx.composeapp.generated.resources.Res
 import photo_fx.composeapp.generated.resources.effect_controls_chromatic_aberration_intensity
 import photo_fx.composeapp.generated.resources.effect_controls_smooth_pixelation_pixel_size
-import photo_fx.composeapp.generated.resources.effect_controls_value
 import photo_fx.composeapp.generated.resources.effect_controls_vignette_decay_factor
 import photo_fx.composeapp.generated.resources.effect_controls_vignette_intensity
 import photo_fx.composeapp.generated.resources.effect_selection_image_with_effect
 import photo_fx.composeapp.generated.resources.generic_accept
 import photo_fx.composeapp.generated.resources.generic_reset
 import photo_fx.composeapp.generated.resources.playground_title
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
 @Composable
 fun PlaygroundScreen(
@@ -246,8 +247,7 @@ private fun SlidingFactor(
                     )
                 )
         ) {
-            val formattedValue =
-                stringResource(Res.string.effect_controls_value, (value * 100).toInt() / 100f)
+            val formattedValue = value.formatWithFixedDecimals(2)
             Text(
                 text = formattedValue,
                 color = MaterialTheme.colorScheme.surface,
@@ -263,5 +263,11 @@ private fun SlidingFactor(
     }
 }
 
-fun ClosedFloatingPointRange<Float>.mapToBias(value: Float) =
+private fun ClosedFloatingPointRange<Float>.mapToBias(value: Float) =
     (2f * (value - start) / (endInclusive - start)) - 1f
+
+private fun Float.formatWithFixedDecimals(decimals: Int): String {
+    val temp = "${(this * 10f.pow(decimals)).roundToInt()}"
+    temp.dropLast(decimals)
+    return "${temp.dropLast(decimals)}.${temp.takeLast(decimals)}"
+}

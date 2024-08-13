@@ -20,6 +20,6 @@ private val shader = """
 fun Modifier.chromaticAberrationShader(
     intensity: Float,
 ): Modifier =
-    this then shader(shader) {
+    this then runtimeShader(shader) {
         uniform("intensity", intensity)
     }

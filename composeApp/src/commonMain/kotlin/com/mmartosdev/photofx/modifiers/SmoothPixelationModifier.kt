@@ -18,6 +18,6 @@ private val shader = """
 fun Modifier.smoothPixelationShader(
     pixelSize: Float,
 ): Modifier =
-    this then shader(shader) {
+    this then runtimeShader(shader) {
         uniform("pixelSize", pixelSize)
     }

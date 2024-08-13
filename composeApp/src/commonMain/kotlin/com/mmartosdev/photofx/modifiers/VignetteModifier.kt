@@ -21,9 +21,7 @@ private val shader = """
 fun Modifier.vignetteShader(
     intensity: Float,
     decayFactor: Float,
-) = this then shader(
-    shader
-) {
+) = this then runtimeShader(shader) {
     uniform("intensity", intensity)
     uniform("decayFactor", decayFactor)
 }
