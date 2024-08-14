@@ -1,0 +1,36 @@
+name: Deploy Kotlin/wasm to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PHOTO_FX_TOKEN }}
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: gradle/gradle-build-action@v2
+        with:
+          cache-read-only: ${{ env.MAIN_BRANCH != 'true' }}
+      - name: Build
+        run: >
+          ./gradlew
+          :composeApp:jsBrowserDistribution
+      - name: Commit and push
+        run: |
+          git config user.email "mmartos@degirona.info"
+          git config user.name "Manuel Martos Roldán"
+          git checkout --orphan gh-pages
+          git reset --hard
+          git --work-tree=composeApp/build/dist/js/productionExecutable add .
+          git commit -m "Upload gh-pages"
+          git push origin gh-pages --force
