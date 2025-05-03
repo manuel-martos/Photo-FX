@@ -1,6 +1,6 @@
 [versions]
 
-agp = "8.5.2"
+agp = "8.9.2"
 androidx-activityCompose = "1.9.1"
 androidx-uiTest = "1.6.8"
 annotations = "23.0.0"
