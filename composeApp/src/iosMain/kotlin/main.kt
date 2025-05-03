@@ -4,6 +4,8 @@ import platform.UIKit.UIViewController
 import kotlin.system.exitProcess
 
 fun MainViewController(): UIViewController =
-    ComposeUIViewController {
+    ComposeUIViewController(
+        { enforceStrictPlistSanityCheck = false }
+    ) {
         PhotoFxApplication(onCloseClicked = { exitProcess(0) })
     }
