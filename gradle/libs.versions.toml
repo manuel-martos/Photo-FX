@@ -4,12 +4,13 @@ agp = "8.9.2"
 androidx-activityCompose = "1.10.1"
 androidx-uiTest = "1.8.0"
 annotations = "23.0.0"
-compose = "1.7.3"
+compose = "1.8.0-rc01"
 kotlin = "2.1.20"
 kotlinx-coroutines = "1.10.2"
 kotlinx-collections-immutable = "0.3.7"
 lifecycle = "2.8.4"
 compose-hot-reload = "1.0.0-alpha09"
+material-icons-core = "1.7.3"
 
 [libraries]
 
@@ -25,6 +26,7 @@ kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-
 jetbrains-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 jetbrains-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle" }
 jetbrains-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+material-icons-core = { module = "org.jetbrains.compose.material:material-icons-core", version.ref = "material-icons-core" }
 
 [plugins]
 

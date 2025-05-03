@@ -74,6 +74,7 @@ kotlin {
             implementation(libs.jetbrains.lifecycle.runtime.compose)
             implementation(libs.kotlinx.collections.immutable)
             implementation(libs.annotations)
+            implementation(libs.material.icons.core)
         }
 
         commonTest.dependencies {
