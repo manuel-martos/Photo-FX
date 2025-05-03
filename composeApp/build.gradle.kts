@@ -37,14 +37,14 @@ kotlin {
     jvm()
 
     js {
-        moduleName = "photo-fx-js"
+        outputModuleName = "photo-fx-js"
         browser()
         binaries.executable()
     }
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        moduleName = "photo-fx-wasm"
+        outputModuleName = "photo-fx-wasm"
         browser()
         binaries.executable()
     }
@@ -61,13 +61,6 @@ kotlin {
     }
 
     sourceSets {
-        all {
-            languageSettings {
-                optIn("org.jetbrains.compose.resources.ExperimentalResourceApi")
-                enableLanguageFeature("ExplicitBackingFields")
-            }
-        }
-
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
