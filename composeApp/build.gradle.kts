@@ -2,15 +2,16 @@ import com.android.build.api.dsl.ManagedVirtualDevice
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose)
     alias(libs.plugins.android.application)
+    alias(libs.plugins.composeHotReload)
 }
 
 kotlin {
@@ -37,14 +38,14 @@ kotlin {
     jvm()
 
     js {
-        moduleName = "photo-fx-js"
+        outputModuleName = "photo-fx-js"
         browser()
         binaries.executable()
     }
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        moduleName = "photo-fx-wasm"
+        outputModuleName = "photo-fx-wasm"
         browser()
         binaries.executable()
     }
@@ -61,13 +62,6 @@ kotlin {
     }
 
     sourceSets {
-        all {
-            languageSettings {
-                optIn("org.jetbrains.compose.resources.ExperimentalResourceApi")
-                enableLanguageFeature("ExplicitBackingFields")
-            }
-        }
-
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -80,6 +74,7 @@ kotlin {
             implementation(libs.jetbrains.lifecycle.runtime.compose)
             implementation(libs.kotlinx.collections.immutable)
             implementation(libs.annotations)
+            implementation(libs.material.icons.core)
         }
 
         commonTest.dependencies {
@@ -110,11 +105,11 @@ kotlin {
 
 android {
     namespace = "com.mmartosdev.photofx"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
 
         applicationId = "com.mmartosdev.photofx.androidApp"
         versionCode = 1
@@ -129,7 +124,7 @@ android {
     //https://developer.android.com/studio/test/gradle-managed-devices
     @Suppress("UnstableApiUsage")
     testOptions {
-        managedDevices.devices {
+        managedDevices.allDevices {
             maybeCreate<ManagedVirtualDevice>("pixel5").apply {
                 device = "Pixel 5"
                 apiLevel = 34
